@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Properties in here will be used for path x, localizing all external data information.
+-->
+<properties>
+    <property_list>
+        <!-- ALL THE IMAGES TO BE USED IN THE GAME -->
+        <property name="IMAGE_BACKGROUND_HOME"              value="./path_X/BackgroundHome.png"></property>
+        <property name="IMAGE_BACKGROUND_GAME"              value="./path_X/BackgroundGame.png"></property>
+	<property name="IMAGE_BACKGROUND_LEVEL_SELECT"	    value="./path_X/BackgroundLevelSelect.png"></property>
+	<property name="IMAGE_BACKGROUND_SPLASH"	    value="./path_X/BackgroundSplash.png"></property>
+	<property name="IMAGE_BUTTON_PLAY"		    value="./path_X/ButtonPlayGame.png"></property>
+	<property name="IMAGE_BUTTON_RESET"		    value="./path_X/ButtonResetGame.png"></property>
+	<property name="IMAGE_BUTTON_SETTINGS"		    value="./path_X/ButtonSettings.png"></property>
+	<property name="IMAGE_BUTTON_HELP"		    value="./path_X/ButtonHelp.png"></property>
+	<property name="IMAGE_BUTTON_QUIT"		    value="./path_X/ButtonQuit.png"></property>
+	<property name="IMAGE_BUTTON_RETURN_HOME"	    value="./path_X/ButtonReturnHome.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_NORTH"	    value="./path_X/ScrollNorth.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_NORTHEAST"	    value="./path_X/ScrollNortheast.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_EAST"	    value="./path_X/ScrollEast.png"></property>	
+	<property name="IMAGE_BUTTON_SCROLL_SOUTHEAST"	    value="./path_X/ScrollSoutheast.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_SOUTH"	    value="./path_X/ScrollSouth.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_SOUTHWEST"	    value="./path_X/ScrollSouthwest.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_WEST"	    value="./path_X/ScrollWest.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_NORTHWEST"	    value="./path_X/ScrollNorthwest.png"></property>
+	<property name="IMAGE_BUTTON_START_LEVEL"	    value="./path_X/ButtonStartLevel.png"></property>
+	<property name="IMAGE_BUTTON_MUTE"		    value="./path_X/ButtonMute.png"></property>
+	<property name="IMAGE_BUTTON_UNMUTE"		    value="./path_X/ButtonUnmute.png"></property>
+	<property name="IMAGE_LEVEL_AVAILABLE"		    value="./path_X/LevelAvailable.png"></property>
+	<property name="IMAGE_LEVEL_UNAVAILABLE"	    value="./path_X/LevelUnavailable.png"></property>
+	<property name="IMAGE_LEVEL_COMPLETE"		    value="./path_X/LevelComplete.png"></property>
+	<property name="IMAGE_DIALOG_LEVEL_OVERLAY"	    value="./path_X/LevelOverlay.png"></property>
+	<property name="IMAGE_DIALOG_QUIT"		    value="./path_X/QuitDialog.png"></property>
+
+
+        <!-- ALL THE TEXT TO BE DISPLAYED -->
+        <property name="TEXT_ERROR_LOADING_AUDIO"               value="Error Loading an Audio File"></property>
+        <property name="TEXT_ERROR_LOADING_LEVEL"               value="Error Loading a Level File"></property>
+        <property name="TEXT_ERROR_LOADING_RECORD"              value="Error Loading the Player Record"></property>
+        <property name="TEXT_ERROR_LOADING_XML_FILE"            value="Error Loading an XML File"></property>
+        <property name="TEXT_ERROR_SAVING_RECORD"               value="Error Saving the Player Record"></property>
+        <property name="TEXT_PROMPT_EXIT"                       value="Are you sure you wish to exit?"></property>
+        <property name="TEXT_TITLE_BAR_GAME"                    value="Path X"></property>
+        <property name="TEXT_TITLE_BAR_ERROR"                   value="An error has occurred"></property>                
+        
+        <!-- AUDIO FILES -->
+
+    </property_list>
+    
+    <!-- PLAYABLE LEVELS CREATED WITH THE LEVEL EDITOR -->
+    <property_options_list>
+        <property_options name="LEVEL_OPTIONS">
+            <option>./sorting_hat/BubbleSortCoil.sort</option>
+        </property_options>
+    </property_options_list>
+</properties>

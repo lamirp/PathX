@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Properties are loaded upon application start.
+-->
+<properties>
+    <property_list>    
+        <property name="FILE_GAME_PROPERTIES"   value="./pathx/path_x_properties.xml"></property>
+        <property name="FILE_PLAYER_RECORD"     value="PlayerRecord.dat"></property>
+        <property name="PATH_AUDIO"             value="./audio/"></property>
+        <property name="PATH_IMG"               value="./img/"></property>
+    </property_list>
+
+    <property_options_list>
+    </property_options_list>
+</properties>
