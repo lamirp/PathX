@@ -1,10 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package pathx;
+import path_x.ui.PathXMiniGame;
+import path_x.ui.PathXErrorHandler;
+import xml_utilities.InvalidXMLFileFormatException;
+import properties_manager.PropertiesManager;
+import static pathx.PathXConstants.*;
 
 /**
  *
@@ -17,9 +17,61 @@ public class PathX {
     
     public static void main(String[] args)
     {
-        //LOAD START UP SETTINGS IN TRY/CATCH
-        //CATCH AN INVALID FILE FORMAT OF THE .XML
+          try
+        {
+            // LOAD THE SETTINGS FOR STARTING THE APP
+            PropertiesManager props = PropertiesManager.getPropertiesManager();
+            props.addProperty(PropertiesManager.DATA_PATH_PROPERTY, PATH_DATA);
+            props.loadProperties(PROPERTIES_FILE_NAME, PROPERTIES_SCHEMA_FILE_NAME);
+            
+            // THEN WE'LL LOAD THE GAME FLAVOR AS SPECIFIED BY THE PROPERTIES FILE
+            String gameFlavorFile = props.getProperty(PathXPropertyType.FILE_GAME_PROPERTIES);
+            props.loadProperties(gameFlavorFile, PROPERTIES_SCHEMA_FILE_NAME);
+
+            // NOW WE CAN LOAD THE UI, WHICH WILL USE ALL THE FLAVORED CONTENT
+            String appTitle = props.getProperty(PathXPropertyType.TEXT_TITLE_BAR_GAME);
+            miniGame.initMiniGame(appTitle, FPS, WINDOW_WIDTH, WINDOW_HEIGHT);
+            
+            // GET THE PROPER WINDOW DIMENSIONS
+            miniGame.startGame();
+        }
+        // THERE WAS A PROBLEM LOADING THE PROPERTIES FILE
+        catch(InvalidXMLFileFormatException ixmlffe)
+        {
+            // LET THE ERROR HANDLER PROVIDE THE RESPONSE
+            PathXErrorHandler errorHandler = miniGame.getErrorHandler();
+            errorHandler.processError(PathXPropertyType.TEXT_ERROR_LOADING_XML_FILE);
+        }
     }
     
-    //CREATE ENUMS FROM THE PROPERTIES FILE WE NEED TO MAKE
+    /**
+     * Create Property Type representing all data extracted 
+     * from XML properties file
+     */
+    public enum PathXPropertyType
+    {
+        //LOAD FROM PROPERTIES.XML
+       /* SETUP FILE NAMES */
+
+
+        /* DIRECTORY PATHS FOR FILE LOADING */
+        
+        
+        // LOADED FROM THE GAME FLAVOR PROPERTIES XML FILE
+            // path_x_properties.xml
+                
+        /* IMAGE FILE NAMES */
+        
+        
+        /* GAME TEXT */
+        
+        
+        /* AUDIO CUES */
+        
+        
+        /* TILE LOADING STUFF */
+        
+        
+    }
+    
 }
