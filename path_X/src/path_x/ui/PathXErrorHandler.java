@@ -6,10 +6,16 @@
 
 package path_x.ui;
 
+import pathx.PathX;
+
 /**
  *
  * @author prima_000
  */
 public class PathXErrorHandler {
+
+    public void processError(PathX.PathXPropertyType pathXPropertyType) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

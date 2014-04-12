@@ -1,7 +1,7 @@
 
 package pathx;
-import path_x.ui.PathXMiniGame;
 import path_x.ui.PathXErrorHandler;
+import path_x.ui.PathXGame;
 import xml_utilities.InvalidXMLFileFormatException;
 import properties_manager.PropertiesManager;
 import static pathx.PathXConstants.*;
@@ -52,19 +52,49 @@ public class PathX {
     {
         //LOAD FROM PROPERTIES.XML
        /* SETUP FILE NAMES */
-
+        FILE_GAME_PROPERTIES,
+        FILE_PLAYER_RECORD,
 
         /* DIRECTORY PATHS FOR FILE LOADING */
-        
+        PATH_AUDIO,
+        PATH_IMAGE,
         
         // LOADED FROM THE GAME FLAVOR PROPERTIES XML FILE
             // path_x_properties.xml
                 
         /* IMAGE FILE NAMES */
-        
+        IMAGE_BACKGROUND_HOME,
+        IMAGE_BACKGROUND_GAME,
+        IMAGE_BACKGROUND_LEVEL_SELECT,
+        IMAGE_BACKGROUND_SPLASH,
+        IMAGE_BUTTON_PLAY,
+        IMAGE_BUTTON_RESET,
+        IMAGE_BUTTON_SETTINGS,
+        IMAGE_BUTTON_HELP,
+        IMAGE_BUTTON_QUIT,
+        IMAGE_BUTTON_RETURN_HOME,
+        IMAGE_BUTTON_SCROLL_NORTH,
+        IMAGE_BUTTON_SCROLL_EAST,
+        IMAGE_BUTTON_SCROLL_SOUTH,
+        IMAGE_BUTTON_SCROLL_WEST,
+        IMAGE_BUTTON_START_LEVEL,
+        IMAGE_BUTTON_MUTE,
+        IMAGE_BUTTON_UNMUTE,
+        IMAGE_LEVEL_AVAILABLE,
+        IMAGE_LEVEL_UNAVAILABLE,
+        IMAGE_LEVEL_COMPLETE,
+        IMAGE_DIALOG_LEVEL_OVERLAY,
+        IMAGE_DIALOG_QUIT,
         
         /* GAME TEXT */
-        
+        TEXT_ERROR_LOADING_AUDIO,
+        TEXT_ERROR_LOADING_LEVEL,
+        TEXT_ERROR_LOADING_RECORD,
+        TEXT_ERROR_LOADING_XML_FILE,
+        TEXT_ERROR_SAVING_RECORD,
+        TEXT_PROMPT_EXIT,
+        TEXT_TITLE_BAR_GAME,
+        TEXT_TITLE_BAR_ERROR
         
         /* AUDIO CUES */
         
