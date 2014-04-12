@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import mini_game.MiniGame;
@@ -71,7 +72,6 @@ public class PathXGame extends MiniGame {
     public void switchToSplashScreen() {
         guiDecor.get(BACKGROUND_TYPE).setState(MENU_SCREEN_STATE);
         // DEACTIVE EVERYTHING NOT ON SCREEN
-        
         // ACTIVATE EVERYTHING ON SCREEN
         guiButtons.get(PLAY_GAME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(PLAY_GAME_BUTTON_TYPE).setEnabled(true);
@@ -80,7 +80,7 @@ public class PathXGame extends MiniGame {
         guiButtons.get(SETTINGS_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(SETTINGS_BUTTON_TYPE).setEnabled(true);
         guiButtons.get(HELP_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
-        guiButtons.get(HELP_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(HELP_BUTTON_TYPE).setEnabled(true);
         
         
     }
@@ -113,11 +113,11 @@ public class PathXGame extends MiniGame {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         String imgPath = props.getProperty(PathXPropertyType.PATH_IMG);
         String windowIconFile = props.getProperty(PathXPropertyType.IMAGE_WINDOW_ICON);
-                System.out.println(windowIconFile);
         img = loadImage(imgPath + windowIconFile);
         window.setIconImage(img);
         
 //construct panel        
+        canvas = new PathXPanel(this, (PathXDataModel) data);
         
         //LOAD BACKGROUNDS 'DECOR'
         currentScreenState = MENU_SCREEN_STATE;
@@ -143,6 +143,10 @@ public class PathXGame extends MiniGame {
         img = loadImage(imgPath + playButton);
         sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
         //mouseover
+                String playButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_PLAY_MOUSEOVER);
+        img = loadImage(imgPath + playButtonMouseover);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, PLAY_BUTTON_X, MENU_BUTTON_Y, 0, 0, PathXButtonState.VISIBLE_STATE.toString());
         //ADD IT
         guiButtons.put(PLAY_GAME_BUTTON_TYPE, s);
         
@@ -152,6 +156,10 @@ public class PathXGame extends MiniGame {
         img = loadImage(imgPath + resetButton);
         sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
         //mouseover
+        String resetButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_RESET_MOUSEOVER);
+        img = loadImage(imgPath + resetButtonMouseover);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, RESET_BUTTON_X, MENU_BUTTON_Y, 0, 0, PathXButtonState.VISIBLE_STATE.toString());
         //ADD IT
         guiButtons.put(RESET_BUTTON_TYPE, s);
         
@@ -161,15 +169,23 @@ public class PathXGame extends MiniGame {
         img = loadImage(imgPath + settingsButton);
         sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
         //mouseover
+        String settingsButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_SETTINGS_MOUSEOVER);
+        img = loadImage(imgPath + settingsButtonMouseover);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, SETTINGS_BUTTON_X, MENU_BUTTON_Y, 0, 0, PathXButtonState.VISIBLE_STATE.toString());
         //ADD IT
         guiButtons.put(SETTINGS_BUTTON_TYPE, s);
         
         //HELP BUTTON
         String helpButton = props.getProperty(PathXPropertyType.IMAGE_BUTTON_HELP);
         sT = new SpriteType(HELP_BUTTON_TYPE);
-        img = loadImage(imgPath + settingsButton);
+        img = loadImage(imgPath + helpButton);
         sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
         //mouseover
+        String helpButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_HELP_MOUSEOVER);
+        img = loadImage(imgPath + helpButtonMouseover);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, HELP_BUTTON_X, MENU_BUTTON_Y, 0, 0, PathXButtonState.VISIBLE_STATE.toString());
         //ADD IT
         guiButtons.put(HELP_BUTTON_TYPE, s);
         
@@ -263,27 +279,44 @@ public class PathXGame extends MiniGame {
 
     @Override
     public void updateGUI() {
-        //Mouse overs will go in here, need to mouse over for buttons.
+                // GO THROUGH THE VISIBLE BUTTONS TO TRIGGER MOUSE OVERS
+        Iterator<Sprite> buttonsIt = guiButtons.values().iterator();
+        while (buttonsIt.hasNext()) {
+            Sprite button = buttonsIt.next();
+
+            // ARE WE ENTERING A BUTTON?
+            if (button.getState().equals(PathXButtonState.VISIBLE_STATE.toString())) {
+                if (button.containsPoint(data.getLastMouseX(), data.getLastMouseY())) {
+                    button.setState(PathXButtonState.MOUSE_OVER_STATE.toString());
+                }
+            } // ARE WE EXITING A BUTTON?
+            else if (button.getState().equals(PathXButtonState.MOUSE_OVER_STATE.toString())) {
+                if (!button.containsPoint(data.getLastMouseX(), data.getLastMouseY())) {
+                    button.setState(PathXButtonState.VISIBLE_STATE.toString());
+                }
+            }
+        }
+        
     }
 
     void switchToGameScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     void displayLevelData(PathXLevel level) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     void displaySettingsOverlay() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     void displayHelpOverlay() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     void switchToLevelScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     

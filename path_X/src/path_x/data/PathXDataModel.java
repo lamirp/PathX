@@ -34,27 +34,34 @@ public class PathXDataModel extends MiniGameDataModel{
     
     public void setCurrentLevel(String initCurrentLevel) {  currentLevel = initCurrentLevel;    }
     
+    /**
+     * Ask if game is at level select
+     * @param game
+     * @param x
+     * @param y 
+     */
+    
     //init methods
     // initLevel
 
     @Override
     public void checkMousePressOnSprites(MiniGame game, int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void reset(MiniGame game) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void updateAll(MiniGame game) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void updateDebugText(MiniGame game) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

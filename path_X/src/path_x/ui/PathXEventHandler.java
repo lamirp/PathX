@@ -84,6 +84,7 @@ public class PathXEventHandler {
      * Respond to Help Request
      */
     public void respondToHelpRequest() {
+        System.out.println("boner");
         game.displayHelpOverlay();
     }
     

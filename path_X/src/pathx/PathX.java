@@ -33,6 +33,7 @@ public class PathX {
             miniGame.initMiniGame(appTitle, FPS, WINDOW_WIDTH, WINDOW_HEIGHT);
             // GET THE PROPER WINDOW DIMENSIONS
             miniGame.startGame();
+            System.out.println("ever get here");
         }
         // THERE WAS A PROBLEM LOADING THE PROPERTIES FILE
         catch(InvalidXMLFileFormatException ixmlffe)

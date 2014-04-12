@@ -24,8 +24,8 @@ public class PathXConstants {
     public static final int FPS = 30;
 
     // UI CONTROL SIZE AND POSITION SETTINGS
-    public static final int WINDOW_WIDTH = 1280;
-    public static final int WINDOW_HEIGHT = 720;
+    public static final int WINDOW_WIDTH = 640;
+    public static final int WINDOW_HEIGHT = 480;
     public static final int VIEWPORT_MARGIN_LEFT = 20;
     public static final int VIEWPORT_MARGIN_RIGHT = 20;
     public static final int VIEWPORT_MARGIN_TOP = 20;
@@ -41,6 +41,12 @@ public class PathXConstants {
     public static final String SETTINGS_BUTTON_TYPE = "SETTINGS_BUTTON_TYPE";
     public static final String HELP_BUTTON_TYPE = "HELP_BUTTON_TYPE";
     
+    public static final int PLAY_BUTTON_X = 60;
+    public static final int MENU_BUTTON_Y = 380;
+    public static final int RESET_BUTTON_X = PLAY_BUTTON_X + 130;
+    public static final int SETTINGS_BUTTON_X = RESET_BUTTON_X + 130;
+    public static final int HELP_BUTTON_X = SETTINGS_BUTTON_X + 130;
+    
     //SCREEN SCROLL BUTTONS
     
     //Screen states
@@ -49,10 +55,14 @@ public class PathXConstants {
     public static final String GAME_SCREEN_STATE = "GAME_SCREEN_STATE";  
     
     
-    // STATS DIALOG COORDINATES
+    // DIALOG TYPES
     public static final String DIALOG_LEVEL_TYPE = "DIALOG_LEVEL_TYPE";
     public static final String DIALOG_QUIT_TYPE = "DIALOG_QUIT_TYPE";
     public static final String DIALOG_STATS_TYPE = "DIALOG_STATS_TYPE";
+    
+    // DIALOG COORDINATES
+    public static final int QUIT_TEXT_X = 400;
+    public static final int QUIT_TEXT_Y = 300;
     
     
     // COLORS USED FOR RENDERING VARIOUS THINGS, INCLUDING THE
