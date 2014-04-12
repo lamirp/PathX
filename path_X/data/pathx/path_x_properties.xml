@@ -33,7 +33,7 @@
 <property name="IMAGE_BUTTON_CONFIRM_MOUSEOVER"		    value="./path_X/ConfirmButtonMouseover.png"></property>
 <property name="IMAGE_BUTTON_DENY"		    value="./path_X/DenyButton.png"></property>
 <property name="IMAGE_BUTTON_DENY_MOUSEOVER"		    value="./path_X/DenyButtonMouseover.png"></property>
-<property name="IMAGE_WINDOW_ICON"		value="/.path_X/WindowIcon.png"></property>
+<property name="IMAGE_WINDOW_ICON"		value="./path_X/WindowIcon.png"></property>
 
 
         <!-- ALL THE TEXT TO BE DISPLAYED -->

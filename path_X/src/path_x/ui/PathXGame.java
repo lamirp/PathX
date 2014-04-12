@@ -111,17 +111,20 @@ public class PathXGame extends MiniGame {
         
         //ADD WINDOW ICON
         PropertiesManager props = PropertiesManager.getPropertiesManager();
-        String imgPath = props.getProperty(PathXPropertyType.PATH_IMAGE);
+        String imgPath = props.getProperty(PathXPropertyType.PATH_IMG);
         String windowIconFile = props.getProperty(PathXPropertyType.IMAGE_WINDOW_ICON);
+                System.out.println(windowIconFile);
         img = loadImage(imgPath + windowIconFile);
         window.setIconImage(img);
+        
+//construct panel        
         
         //LOAD BACKGROUNDS 'DECOR'
         currentScreenState = MENU_SCREEN_STATE;
         img = loadImage(imgPath + props.getProperty(PathXPropertyType.IMAGE_BACKGROUND_SPLASH));
         sT = new SpriteType(BACKGROUND_TYPE);
         sT.addState(MENU_SCREEN_STATE, img);
-        img = loadImage(imgPath + props.getProperty(PathXPropertyType.IMAGE_BACKGROUND_GAME));
+        img = loadImage(imgPath + props.getProperty(PathXPropertyType.IMAGE_BACKGROUND_LEVEL_SELECT));
         sT.addState(GAME_SCREEN_STATE, img);
         s = new Sprite(sT, 0, 0, 0, 0, MENU_SCREEN_STATE);
         guiDecor.put(BACKGROUND_TYPE, s);
@@ -175,7 +178,7 @@ public class PathXGame extends MiniGame {
         //DIALOGS
         Viewport viewport = data.getViewport();
         //LEVEL DIALOG
-        String levelDialog = props.getProperty(PathXPropertyType.IMAGE_DIALOG_LEVEL_OVERLAY);
+        String levelDialog = props.getProperty(PathXPropertyType.IMAGE_DIALOG_QUIT);
         sT = new SpriteType(DIALOG_LEVEL_TYPE);
         img = loadImageWithColorKey(imgPath + levelDialog, COLOR_KEY);
         sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
