@@ -8,6 +8,7 @@ package path_x.ui;
 
 import path_x.data.PathXDataModel;
 import path_x.data.PathXLevel;
+import path_x.file.PathXFileManager;
 import static pathx.PathXConstants.*;
 
 /**
@@ -87,5 +88,13 @@ public class PathXEventHandler {
     }
     
     //MUST DO RESPOND TO KEYPRESS STUFF BELOW HERE
+
+    void respondToResetRequest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void respondToKeyPress(int keyCode) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

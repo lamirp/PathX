@@ -10,8 +10,11 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import mini_game.MiniGame;
+import mini_game.Viewport;
 import mini_game.Sprite;
 import mini_game.SpriteType;
+import path_x.data.PathXDataModel;
+import path_x.data.PathXLevel;
 import path_x.file.PathXFileManager;
 import pathx.PathX.PathXPropertyType;
 import static pathx.PathXConstants.*;
@@ -56,14 +59,31 @@ public class PathXGame extends MiniGame {
      * 
      * displaystates
      * savePlayerRecord
-     * switchToLevelScreen
-     * switchToSplashScreen
-     * switchToGameScreen
+     * switchToLevelScreen  LEVEL SELECT
+     * switchToSplashScreen HOME SCREEN
+     * switchToGameScreen  GAMEPLAY SCREEN
      * displayLevelData
      * displayHelpOverlay
      * displaySettingsOverlay
      * 
      */
+    
+    public void switchToSplashScreen() {
+        guiDecor.get(BACKGROUND_TYPE).setState(MENU_SCREEN_STATE);
+        // DEACTIVE EVERYTHING NOT ON SCREEN
+        
+        // ACTIVATE EVERYTHING ON SCREEN
+        guiButtons.get(PLAY_GAME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(PLAY_GAME_BUTTON_TYPE).setEnabled(true);
+        guiButtons.get(RESET_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(RESET_BUTTON_TYPE).setEnabled(true);
+        guiButtons.get(SETTINGS_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(SETTINGS_BUTTON_TYPE).setEnabled(true);
+        guiButtons.get(HELP_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(HELP_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        
+        
+    }
     @Override
     public void initAudioContent() {
         //NO AUDIO CURRENTLY TO BE INITIALIZED
@@ -79,7 +99,7 @@ public class PathXGame extends MiniGame {
 
 
         // INIT OUR DATA MANAGER
-        data = new PathXHatDataModel(this);
+        data = new PathXDataModel(this);
     }
 
     @Override
@@ -153,6 +173,7 @@ public class PathXGame extends MiniGame {
         //NEED TO DO DECOR ADDITIONS, WHAT WILL BE DECOR?
         
         //DIALOGS
+        Viewport viewport = data.getViewport();
         //LEVEL DIALOG
         String levelDialog = props.getProperty(PathXPropertyType.IMAGE_DIALOG_LEVEL_OVERLAY);
         sT = new SpriteType(DIALOG_LEVEL_TYPE);
@@ -240,6 +261,26 @@ public class PathXGame extends MiniGame {
     @Override
     public void updateGUI() {
         //Mouse overs will go in here, need to mouse over for buttons.
+    }
+
+    void switchToGameScreen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void displayLevelData(PathXLevel level) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void displaySettingsOverlay() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void displayHelpOverlay() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void switchToLevelScreen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
