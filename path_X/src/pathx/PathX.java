@@ -85,6 +85,7 @@ public class PathX {
         IMAGE_LEVEL_COMPLETE,
         IMAGE_DIALOG_LEVEL_OVERLAY,
         IMAGE_DIALOG_QUIT,
+        IMAGE_WINDOW_ICON, 
         
         /* GAME TEXT */
         TEXT_ERROR_LOADING_AUDIO,
@@ -94,7 +95,9 @@ public class PathX {
         TEXT_ERROR_SAVING_RECORD,
         TEXT_PROMPT_EXIT,
         TEXT_TITLE_BAR_GAME,
-        TEXT_TITLE_BAR_ERROR
+        TEXT_TITLE_BAR_ERROR, 
+
+
         
         /* AUDIO CUES */
         

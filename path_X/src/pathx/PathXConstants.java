@@ -1,6 +1,9 @@
 
 package pathx;
 
+import java.awt.Color;
+import java.awt.Font;
+
 /**
  * This class stores constants required for the game, file locations and other important
  * things.
@@ -13,6 +16,9 @@ public class PathXConstants {
     public static String PROPERTIES_FILE_NAME = "properties.xml";
     public static String PROPERTIES_SCHEMA_FILE_NAME = "properties_schema.xsd";    
     public static String PATH_DATA = "./data/";
+    
+    //Background types
+    public static final String BACKGROUND_TYPE = "BACKGROUND_TYPE";
        
         // ANIMATION SPEED
     public static final int FPS = 30;
@@ -29,13 +35,38 @@ public class PathXConstants {
     public static final int LEVEL_BUTTON_Y = 570;
     public static final int VIEWPORT_INC = 5;
     
-    // UI CONTROLS POSITIONS IN THE GAME SCREEN
+    //MENU UI CONTROLS POSITIONS IN THE GAME SCREEN
+    public static final String PLAY_GAME_BUTTON_TYPE = "PLAY_GAME_BUTTON_TYPE";
+    public static final String RESET_BUTTON_TYPE = "RESET_BUTTON_TYPE";
+    public static final String SETTINGS_BUTTON_TYPE = "SETTINGS_BUTTON_TYPE";
+    public static final String HELP_BUTTON_TYPE = "HELP_BUTTON_TYPE";
+    
+    //SCREEN SCROLL BUTTONS
+    
+    //Screen states
+    public static final String MENU_SCREEN_STATE = "MENU_SCREEN_STATE";
+    public static final String LEVEL_SCREEN_STATE = "LEVEL_SCREEN_STATE";
+    public static final String GAME_SCREEN_STATE = "GAME_SCREEN_STATE";  
+    
     
     // STATS DIALOG COORDINATES
+    public static final String DIALOG_LEVEL_TYPE = "DIALOG_LEVEL_TYPE";
+    public static final String DIALOG_QUIT_TYPE = "DIALOG_QUIT_TYPE";
+    public static final String DIALOG_STATS_TYPE = "DIALOG_STATS_TYPE";
     
-      // COLORS USED FOR RENDERING VARIOUS THINGS, INCLUDING THE
+    
+    // COLORS USED FOR RENDERING VARIOUS THINGS, INCLUDING THE
     // COLOR KEY, WHICH REFERS TO THE COLOR TO IGNORE WHEN
     // LOADING ART.
-    
-        // FONTS USED DURING FOR TEXTUAL GAME DISPLAYS
+    public static final Color COLOR_KEY = new Color(255, 174, 201);
+    public static final Color COLOR_DEBUG_TEXT = Color.BLACK;
+    public static final Color COLOR_TEXT_DISPLAY = new Color (10, 160, 10);
+    public static final Color COLOR_STATS = new Color(0, 60, 0);
+    public static final Color COLOR_ALGORITHM_HEADER = Color.WHITE;
+
+    // FONTS USED DURING FOR TEXTUAL GAME DISPLAYS
+    public static final Font FONT_TEXT_DISPLAY = new Font(Font.SANS_SERIF, Font.BOLD, 48);
+    public static final Font FONT_DEBUG_TEXT = new Font(Font.MONOSPACED, Font.BOLD, 14);
+    public static final Font FONT_STATS = new Font(Font.MONOSPACED, Font.BOLD, 20);
+    public static final Font FONT_GAME_TYPE_TEXT = new Font(Font.SANS_SERIF, Font.BOLD, 18);
 }

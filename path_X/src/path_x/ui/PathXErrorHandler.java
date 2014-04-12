@@ -6,16 +6,33 @@
 
 package path_x.ui;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import pathx.PathX;
+import pathx.PathX.PathXPropertyType;
+import properties_manager.PropertiesManager;
 
 /**
  *
  * @author prima_000
  */
 public class PathXErrorHandler {
+    private JFrame window;
 
-    public void processError(PathX.PathXPropertyType pathXPropertyType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public PathXErrorHandler(JFrame initWindow)
+    {
+        window = initWindow;
+    }
+    
+    
+    public void processError(PathXPropertyType errorType) {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        String errorFeedbackText = props.getProperty(errorType);
+        
+        String errorTitle = props.getProperty(PathXPropertyType.TEXT_TITLE_BAR_ERROR);
+        
+        JOptionPane.showMessageDialog(window, errorFeedbackText, errorTitle, JOptionPane.ERROR_MESSAGE);
     }
     
 }
