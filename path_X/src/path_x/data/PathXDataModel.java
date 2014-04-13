@@ -8,6 +8,8 @@ package path_x.data;
 
 import mini_game.MiniGame;
 import mini_game.MiniGameDataModel;
+import path_x.ui.PathXButtonState;
+import static pathx.PathXConstants.DIALOG_HELP_TYPE;
 
 /**
  *
@@ -46,7 +48,12 @@ public class PathXDataModel extends MiniGameDataModel{
 
     @Override
     public void checkMousePressOnSprites(MiniGame game, int x, int y) {
-       
+        System.out.println("bno");
+       if(game.getGUIDialogs().get(DIALOG_HELP_TYPE).getState().equals(PathXButtonState.VISIBLE_STATE.toString()))
+       {
+           game.getGUIDialogs().get(DIALOG_HELP_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+           return;
+       }
     }
 
     @Override

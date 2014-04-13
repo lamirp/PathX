@@ -18,6 +18,7 @@
 	<property name="IMAGE_BUTTON_SETTINGS_MOUSEOVER"		    value="./path_X/SettingsButtonMouseover.png"></property>
 	<property name="IMAGE_BUTTON_HELP_MOUSEOVER"		    value="./path_X/HelpButtonMouseover.png"></property>
 	<property name="IMAGE_BUTTON_QUIT"		    value="./path_X/QuitButton.png"></property>
+	<property name="IMAGE_BUTTON_QUIT_MOUSEOVER"		    value="./path_X/QuitButtonMouseover.png"></property>
 	<property name="IMAGE_BUTTON_SCROLL_NORTH"	    value="./path_X/ScrollNorth.png"></property>
 	<property name="IMAGE_BUTTON_SCROLL_EAST"	    value="./path_X/ScrollEast.png"></property>	
 	<property name="IMAGE_BUTTON_SCROLL_SOUTH"	    value="./path_X/ScrollSouth.png"></property>
@@ -30,11 +31,16 @@
 	<property name="IMAGE_LEVEL_UNAVAILABLE"	    value="./path_X/LevelUnavailable.png"></property>
 	<property name="IMAGE_LEVEL_COMPLETE"		    value="./path_X/LevelComplete.png"></property>
 	<property name="IMAGE_DIALOG_QUIT"		    value="./path_X/QuitDialog.png"></property>
+<property name="IMAGE_BUTTON_HOME"
+value="./path_X/HomeButton.png"></property>
+<property name="IMAGE_BUTTON_HOME_MOUSEOVER"
+value="./path_X/HomeButtonMouseover.png"></property>
 <property name="IMAGE_BUTTON_CONFIRM"		    value="./path_X/ConfirmButton.png"></property>
 <property name="IMAGE_BUTTON_CONFIRM_MOUSEOVER"		    value="./path_X/ConfirmButtonMouseover.png"></property>
 <property name="IMAGE_BUTTON_DENY"		    value="./path_X/DenyButton.png"></property>
 <property name="IMAGE_BUTTON_DENY_MOUSEOVER"		    value="./path_X/DenyButtonMouseover.png"></property>
 <property name="IMAGE_WINDOW_ICON"		value="./path_X/WindowIcon.png"></property>
+<property name="IMAGE_BACKGROUND_HELP"	value="./path_X/HelpScreen.png"></property>
 
 
         <!-- ALL THE TEXT TO BE DISPLAYED -->
@@ -45,7 +51,8 @@
         <property name="TEXT_ERROR_SAVING_RECORD"               value="Error Saving the Player Record"></property>
         <property name="TEXT_PROMPT_EXIT"                       value="Are you sure you wish to exit?"></property>
         <property name="TEXT_TITLE_BAR_GAME"                    value="Path X"></property>
-        <property name="TEXT_TITLE_BAR_ERROR"                   value="An error has occurred"></property>                
+        <property name="TEXT_TITLE_BAR_ERROR"                   value="An error has occurred"></property>  
+	<property name="TEXT_HELP"	value="pathX Application Programmed by: Steven Herring(Steven.Herring@stonybrook.edu)Designed by: Richard McKenna(Richard@cs.stonybrook.edu)"></property>              
         
 </property_list>
     </properties>

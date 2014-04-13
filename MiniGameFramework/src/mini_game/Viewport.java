@@ -120,4 +120,15 @@ public class Viewport
         viewportX += incX;
         viewportY += incY;
     }
+    
+        
+    public void setViewportX(int incX)
+    {
+        viewportX = incX;
+    }
+    
+    public void setViewportY(int incY)
+    {
+        viewportY = incY;
+    }
 }

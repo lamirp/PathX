@@ -49,8 +49,8 @@ public class PathXGame extends MiniGame {
     public PathXErrorHandler getErrorHandler() {
         return errorHandler;
     }
-    //public PathXRecord getPlayerRecord() {  return record;  }
 
+    //public PathXRecord getPlayerRecord() {  return record;  }
     /**
      * Test Method to see is screen state is what it should be
      */
@@ -81,7 +81,30 @@ public class PathXGame extends MiniGame {
      */
     public void switchToSplashScreen() {
         guiDecor.get(BACKGROUND_TYPE).setState(MENU_SCREEN_STATE);
+        currentScreenState = MENU_SCREEN_STATE;
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        //THE BACKGROUND NEEDS TO BE BACK TO FULLSCREEN
+        guiDecor.get(BACKGROUND_TYPE).setState(MENU_SCREEN_STATE);
+        guiDecor.get(BORDER_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+
+        Viewport viewport = data.getViewport();
+        int width = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(MENU_SCREEN_STATE).getWidth();
+        int height = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(MENU_SCREEN_STATE).getHeight();
+        viewport.setScreenSize(width, height);
+        viewport.scroll(0, 0);
+        viewport.setViewportX(0);
+        viewport.setViewportY(0);
+
+        viewport.updateViewportBoundaries();
+
         // DEACTIVE EVERYTHING NOT ON SCREEN
+        guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(HELP_SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(HELP_SCROLL_BUTTON_SOUTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
         // ACTIVATE EVERYTHING ON SCREEN
         guiButtons.get(PLAY_GAME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(PLAY_GAME_BUTTON_TYPE).setEnabled(true);
@@ -135,9 +158,11 @@ public class PathXGame extends MiniGame {
         sT.addState(MENU_SCREEN_STATE, img);
         img = loadImage(imgPath + props.getProperty(PathXPropertyType.IMAGE_BACKGROUND_LEVEL_SELECT));
         sT.addState(GAME_SCREEN_STATE, img);
+        img = loadImage(imgPath + props.getProperty(PathXPropertyType.IMAGE_BACKGROUND_HELP));
+        sT.addState(HELP_SCREEN_STATE, img);
         s = new Sprite(sT, 0, 0, 0, 0, MENU_SCREEN_STATE);
         guiDecor.put(BACKGROUND_TYPE, s);
-        
+
         //LOAD BORDER DECOR
         img = loadImageWithColorKey(imgPath + props.getProperty(PathXPropertyType.IMAGE_BACKGROUND_LEVEL_SELECT_BORDER), COLOR_KEY);
         sT = new SpriteType(BORDER_TYPE);
@@ -151,6 +176,48 @@ public class PathXGame extends MiniGame {
         //GOING TO NEED AN ARRAY FOR THE LEVEL ICONS HERE
         //GOING TO NEED TO BE ABLE TO POSITION LEVELS SPECIFICALLY ON THE MAP
         //ADD BUTTONS
+        //HOME BUTTON AND EXIT BUTTON
+        String quitButton = props.getProperty(PathXPropertyType.IMAGE_BUTTON_QUIT);
+        sT = new SpriteType(QUIT_BUTTON_TYPE);
+        img = loadImageWithColorKey(imgPath + quitButton, COLOR_KEY);
+        sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
+        String quitButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_QUIT_MOUSEOVER);
+        img = loadImageWithColorKey(imgPath + quitButtonMouseover, COLOR_KEY);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, QUIT_BUTTON_X, QUIT_BUTTON_Y, 0, 0, PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.put(QUIT_BUTTON_TYPE, s);
+
+        String homeButton = props.getProperty(PathXPropertyType.IMAGE_BUTTON_HOME);
+        sT = new SpriteType(HOME_BUTTON_TYPE);
+        img = loadImageWithColorKey(imgPath + homeButton, COLOR_KEY);
+        sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
+        String homeButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_HOME_MOUSEOVER);
+        img = loadImageWithColorKey(imgPath + homeButtonMouseover, COLOR_KEY);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, HOME_BUTTON_X, HOME_BUTTON_Y, 0, 0, PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.put(HOME_BUTTON_TYPE, s);
+
+        //HELP SCROLL CONTROLS
+        String helpNorthScrollButton = props.getProperty(PathXPropertyType.IMAGE_BUTTON_SCROLL_NORTH);
+        sT = new SpriteType(HELP_SCROLL_BUTTON_NORTH_TYPE);
+        img = loadImageWithColorKey(imgPath + helpNorthScrollButton, COLOR_KEY);
+        sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
+        String helpNorthScrollButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_SCROLL_NORTH_MOUSEOVER);
+        img = loadImageWithColorKey(imgPath + helpNorthScrollButtonMouseover, COLOR_KEY);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, HELP_SCROLL_BUTTON_NORTH_X, HELP_SCROLL_BUTTON_NORTH_Y, 0, 0, PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.put(HELP_SCROLL_BUTTON_NORTH_TYPE, s);
+
+        String helpSouthScrollButton = props.getProperty(PathXPropertyType.IMAGE_BUTTON_SCROLL_SOUTH);
+        sT = new SpriteType(HELP_SCROLL_BUTTON_SOUTH_TYPE);
+        img = loadImageWithColorKey(imgPath + helpSouthScrollButton, COLOR_KEY);
+        sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
+        String helpSouthScrollButtonMouseover = props.getProperty(PathXPropertyType.IMAGE_BUTTON_SCROLL_SOUTH_MOUSEOVER);
+        img = loadImageWithColorKey(imgPath + helpSouthScrollButtonMouseover, COLOR_KEY);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, HELP_SCROLL_BUTTON_SOUTH_X, HELP_SCROLL_BUTTON_SOUTH_Y, 0, 0, PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.put(HELP_SCROLL_BUTTON_SOUTH_TYPE, s);
+
         //SCROLL CONTROLS HERE
         String northScrollButton = props.getProperty(PathXPropertyType.IMAGE_BUTTON_SCROLL_NORTH);
         sT = new SpriteType(SCROLL_BUTTON_NORTH_TYPE);
@@ -259,15 +326,6 @@ public class PathXGame extends MiniGame {
 
         //STATS DIALOG
         //QUIT DIALOG
-        String quitDialog = props.getProperty(PathXPropertyType.IMAGE_DIALOG_QUIT);
-        sT = new SpriteType(DIALOG_QUIT_TYPE);
-        img = loadImageWithColorKey(imgPath + quitDialog, COLOR_KEY);
-        sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
-        x = (viewport.getScreenWidth() / 2) - (img.getWidth(null) / 2);
-        y = (viewport.getScreenHeight() / 2) - (img.getHeight(null) / 2);
-        s = new Sprite(sT, x, y, 0, 0, PathXButtonState.INVISIBLE_STATE.toString());
-        guiDialogs.put(DIALOG_QUIT_TYPE, s);
-
         //NEED TO DO A TREE FOR DEM NAVIGATION BUTTONS RIGHT, AND PROBABLY POWERUPS
     }
 
@@ -286,27 +344,51 @@ public class PathXGame extends MiniGame {
         });
 
         //LEVEL SELECTION HANDLERS
-        
+        //NAVI HANDLERS
+        guiButtons.get(HOME_BUTTON_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToHomeRequest();
+            }
+        });
+
+        guiButtons.get(QUIT_BUTTON_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToExitRequest();
+            }
+        });
+
         //SCROLL HANDLERS
-        guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setActionListener(new ActionListener() {
+        guiButtons.get(HELP_SCROLL_BUTTON_NORTH_TYPE).setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 eventHandler.respondToScrollNorth();
             }
         });
         
-                guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                eventHandler.respondToScrollEast();
-            }
-        });
-                
-                        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setActionListener(new ActionListener() {
+        guiButtons.get(HELP_SCROLL_BUTTON_SOUTH_TYPE).setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 eventHandler.respondToScrollSouth();
             }
         });
-                        
-                                guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setActionListener(new ActionListener() {
+        
+        guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToScrollNorth();
+            }
+        });
+
+        guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToScrollEast();
+            }
+        });
+
+        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToScrollSouth();
+            }
+        });
+
+        guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 eventHandler.respondToScrollWest();
             }
@@ -411,14 +493,21 @@ public class PathXGame extends MiniGame {
         guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setEnabled(true);
 
+        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setEnabled(true);
+
         guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setEnabled(true);
 
         guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setEnabled(true);
 
-        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
-        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setEnabled(true);
+        //enable home and quit
+        guiButtons.get(QUIT_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(QUIT_BUTTON_TYPE).setEnabled(true);
+
+        guiButtons.get(HOME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(HOME_BUTTON_TYPE).setEnabled(true);
 
     }
 
@@ -426,16 +515,102 @@ public class PathXGame extends MiniGame {
 
     }
 
-    void displaySettingsOverlay() {
-
-    }
-
     void displayHelpOverlay() {
-
+        guiDialogs.get(DIALOG_HELP_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
     }
 
     void switchToLevelScreen() {
 
+    }
+
+    void switchToSettingsScreen() {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        //change background
+        //THE BACKGROUND NEEDS TO BE A SMALLER VIEWPORT OF A LARGER IMAGE
+        guiDecor.get(BACKGROUND_TYPE).setState(SETTINGS_SCREEN_STATE);
+        guiDecor.get(BORDER_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+
+        Viewport viewport = data.getViewport();
+        /*
+         int width = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(GAME_SCREEN_STATE).getWidth();
+         int height = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(GAME_SCREEN_STATE).getHeight();
+         viewport.setGameWorldSize(width, height);
+         viewport.setNorthPanelHeight(LEVEL_SELECT_NORTH_PANEL_HEIGHT);
+         viewport.updateViewportBoundaries();
+         */
+
+        //DISABLE MAIN MENU BUTTONS
+        guiButtons.get(PLAY_GAME_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(PLAY_GAME_BUTTON_TYPE).setEnabled(false);
+        guiButtons.get(SETTINGS_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SETTINGS_BUTTON_TYPE).setEnabled(false);
+        guiButtons.get(RESET_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(RESET_BUTTON_TYPE).setEnabled(false);
+        guiButtons.get(HELP_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(HELP_BUTTON_TYPE).setEnabled(false);
+
+        //change the current screen state
+        currentScreenState = SETTINGS_SCREEN_STATE;
+
+        //ANYTHING ELSE NECESSARY TO DO, DO IT NOW (MAYBE SHOW THE LEVELS?))
+        viewport.scroll(0, LEVEL_SELECT_NORTH_PANEL_HEIGHT);
+
+        //enable home and quit
+        guiButtons.get(QUIT_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(QUIT_BUTTON_TYPE).setEnabled(true);
+
+        guiButtons.get(HOME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(HOME_BUTTON_TYPE).setEnabled(true);
+
+        //ALSO WE WANT TO INITIATE RENDERING OF THE SETTINGS STUFF, PLUS WE NEED BUTTONS AND A SLIDER
+    }
+
+    public void switchToHelpScreen() {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        //change background
+        //THE BACKGROUND NEEDS TO BE A SMALLER VIEWPORT OF A LARGER IMAGE
+        guiDecor.get(BACKGROUND_TYPE).setState(HELP_SCREEN_STATE);
+        guiDecor.get(BORDER_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+
+        Viewport viewport = data.getViewport();
+
+        int width = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(HELP_SCREEN_STATE).getWidth();
+        int height = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(HELP_SCREEN_STATE).getHeight();
+        viewport.setGameWorldSize(width, height);
+        viewport.setNorthPanelHeight(LEVEL_SELECT_NORTH_PANEL_HEIGHT);
+        viewport.updateViewportBoundaries();
+
+        //DISABLE MAIN MENU BUTTONS
+        guiButtons.get(PLAY_GAME_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(PLAY_GAME_BUTTON_TYPE).setEnabled(false);
+        guiButtons.get(SETTINGS_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SETTINGS_BUTTON_TYPE).setEnabled(false);
+        guiButtons.get(RESET_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(RESET_BUTTON_TYPE).setEnabled(false);
+        guiButtons.get(HELP_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(HELP_BUTTON_TYPE).setEnabled(false);
+
+        //change the current screen state
+        currentScreenState = HELP_SCREEN_STATE;
+
+        //ANYTHING ELSE NECESSARY TO DO, DO IT NOW (MAYBE SHOW THE LEVELS?))
+        viewport.scroll(0, LEVEL_SELECT_NORTH_PANEL_HEIGHT);
+
+        //scrollers
+        guiButtons.get(HELP_SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(HELP_SCROLL_BUTTON_NORTH_TYPE).setEnabled(true);
+
+        guiButtons.get(HELP_SCROLL_BUTTON_SOUTH_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(HELP_SCROLL_BUTTON_SOUTH_TYPE).setEnabled(true);
+
+        //enable home and quit
+        guiButtons.get(QUIT_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(QUIT_BUTTON_TYPE).setEnabled(true);
+
+        guiButtons.get(HOME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiButtons.get(HOME_BUTTON_TYPE).setEnabled(true);
     }
 
 }

@@ -1,8 +1,12 @@
 package path_x.ui;
 
+import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Collection;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import mini_game.MiniGame;
 import mini_game.Sprite;
@@ -22,7 +26,7 @@ import properties_manager.PropertiesManager;
 public class PathXPanel extends JPanel {
     //This class is the "bulky" gui stuff, the actual rendering.
 
-    private MiniGame game;
+    private PathXGame game;
 
     //DATA
     private PathXDataModel data;
@@ -45,6 +49,9 @@ public class PathXPanel extends JPanel {
             renderBackground(g);
             //render buttons
             renderGUIControls(g);
+            //RENDER DIALOGS
+            renderDialogs(g);
+            //RENDER TEXTS
 
             //Only render while in game
             if (!data.notStarted()) {
@@ -73,7 +80,7 @@ public class PathXPanel extends JPanel {
 
     public void renderBackground(Graphics g) {
         Sprite bg = game.getGUIDecor().get(BACKGROUND_TYPE);
-       // renderSprite(g, bg);
+        // renderSprite(g, bg);
 
         if (!bg.getState().equals(PathXButtonState.INVISIBLE_STATE.toString())) {
             SpriteType bgST = bg.getSpriteType();
@@ -131,5 +138,27 @@ public class PathXPanel extends JPanel {
             g.drawImage(img, (int) s.getX(), (int) s.getY(), bgST.getWidth(), bgST.getHeight(), null);
         }
     }
+    
+    public static void drawStringMultiLine(Graphics g, String text, int lineWidth, int x, int y) {
+    FontMetrics m = g.getFontMetrics();
+    if(m.stringWidth(text) < lineWidth) {
+        g.drawString(text, x, y);
+    } else {
+        String[] words = text.split(" ");
+        String currentLine = words[0];
+        for(int i = 1; i < words.length; i++) {
+            if(m.stringWidth(currentLine+words[i]) < lineWidth) {
+                currentLine += " "+words[i];
+            } else {
+                g.drawString(currentLine, x, y);
+                y += m.getHeight();
+                currentLine = words[i];
+            }
+        }
+        if(currentLine.trim().length() > 0) {
+            g.drawString(currentLine, x, y);
+        }
+    }
+}
 
 }

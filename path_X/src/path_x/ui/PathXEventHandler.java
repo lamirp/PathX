@@ -79,7 +79,7 @@ public class PathXEventHandler {
      */
     public void respondToSettingsRequest() {
         System.out.println("Response to settings request");
-        game.displaySettingsOverlay();
+        game.switchToSettingsScreen();
     }
 
     /**
@@ -87,7 +87,7 @@ public class PathXEventHandler {
      */
     public void respondToHelpRequest() {
         System.out.println("Response to help request");
-        game.displayHelpOverlay();
+       game.switchToHelpScreen();
     }
 
     //MUST DO RESPOND TO KEYPRESS STUFF BELOW HERE
@@ -101,13 +101,13 @@ public class PathXEventHandler {
         //UP DOWN LEFT RIGHT SCROLL KEYS
         if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
             //CAN ONLY DO THIS IF WE'RE IN THE GAME SCREEN
-            if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
+            if (game.isCurrentScreenState(GAME_SCREEN_STATE) || game.isCurrentScreenState(HELP_SCREEN_STATE)) {
                 respondToScrollNorth();
             }
         }
 
         if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
-            if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
+            if (game.isCurrentScreenState(GAME_SCREEN_STATE) || game.isCurrentScreenState(HELP_SCREEN_STATE)) {
                 respondToScrollSouth();
             }
         }
@@ -176,6 +176,10 @@ public class PathXEventHandler {
             int difference = availableScrollSpace - (viewport.getViewportX() * -1);
             viewport.scroll(-difference, 0);
         }
+    }
+
+    void respondToHomeRequest() {
+        game.switchToSplashScreen();
     }
 
 }
