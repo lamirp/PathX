@@ -5,6 +5,7 @@
  */
 package path_x.ui;
 
+import java.awt.event.KeyEvent;
 import mini_game.Viewport;
 import path_x.data.PathXDataModel;
 import path_x.data.PathXLevel;
@@ -95,7 +96,34 @@ public class PathXEventHandler {
     }
 
     void respondToKeyPress(int keyCode) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PathXDataModel data = (PathXDataModel) game.getDataModel();
+
+        //UP DOWN LEFT RIGHT SCROLL KEYS
+        if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
+            //CAN ONLY DO THIS IF WE'RE IN THE GAME SCREEN
+            if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
+                respondToScrollNorth();
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
+            if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
+                respondToScrollSouth();
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_E) {
+            if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
+                respondToScrollEast();
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
+            if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
+                respondToScrollWest();
+            }
+        }
+
     }
 
     void respondToScrollSouth() {
