@@ -22,9 +22,9 @@
 	<property name="IMAGE_BUTTON_SCROLL_SOUTH"	    value="./path_X/ScrollSouth.png"></property>
 	<property name="IMAGE_BUTTON_SCROLL_WEST"	    value="./path_X/ScrollWest.png"></property>
 	<property name="IMAGE_BUTTON_SCROLL_NORTH_MOUSEOVER"	    value="./path_X/ScrollNorthMouseover.png"></property>
-	<property name="IMAGE_BUTTON_SCROLL_EAST_NORTH_MOUSEOVER"	    value="./path_X/ScrollEastMouseover.png"></property>	
-	<property name="IMAGE_BUTTON_SCROLL_SOUTH_NORTH_MOUSEOVER"	    value="./path_X/ScrollSouthMouseover.png"></property>
-	<property name="IMAGE_BUTTON_SCROLL_WEST_NORTH_MOUSEOVER"	    value="./path_X/ScrollWestMouseover.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_EAST_MOUSEOVER"	    value="./path_X/ScrollEastMouseover.png"></property>	
+	<property name="IMAGE_BUTTON_SCROLL_SOUTH_MOUSEOVER"	    value="./path_X/ScrollSouthMouseover.png"></property>
+	<property name="IMAGE_BUTTON_SCROLL_WEST_MOUSEOVER"	    value="./path_X/ScrollWestMouseover.png"></property>
 	<property name="IMAGE_LEVEL_AVAILABLE"		    value="./path_X/LevelAvailable.png"></property>
 	<property name="IMAGE_LEVEL_UNAVAILABLE"	    value="./path_X/LevelUnavailable.png"></property>
 	<property name="IMAGE_LEVEL_COMPLETE"		    value="./path_X/LevelComplete.png"></property>

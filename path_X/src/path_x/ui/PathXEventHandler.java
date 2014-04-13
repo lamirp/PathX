@@ -44,7 +44,7 @@ public class PathXEventHandler {
     public void respondToPlayGameRequest() {
         //start audio if necessary
         //bring up the select level screen
-        game.switchToLevelScreen();
+        game.switchToGameScreen();
         
     }//respond to play
     
@@ -77,6 +77,7 @@ public class PathXEventHandler {
      * Respond to Settings Request
      */
     public void respondToSettingsRequest() {
+        System.out.println("Response to settings request");
         game.displaySettingsOverlay();
     }
     
@@ -84,14 +85,14 @@ public class PathXEventHandler {
      * Respond to Help Request
      */
     public void respondToHelpRequest() {
-        System.out.println("boner");
+        System.out.println("Response to help request");
         game.displayHelpOverlay();
     }
     
     //MUST DO RESPOND TO KEYPRESS STUFF BELOW HERE
 
     void respondToResetRequest() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Response to reset request");
     }
 
     void respondToKeyPress(int keyCode) {

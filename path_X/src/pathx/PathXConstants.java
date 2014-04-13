@@ -41,6 +41,7 @@ public class PathXConstants {
     public static final String SETTINGS_BUTTON_TYPE = "SETTINGS_BUTTON_TYPE";
     public static final String HELP_BUTTON_TYPE = "HELP_BUTTON_TYPE";
     
+    
     public static final int PLAY_BUTTON_X = 60;
     public static final int MENU_BUTTON_Y = 380;
     public static final int RESET_BUTTON_X = PLAY_BUTTON_X + 130;
@@ -48,6 +49,23 @@ public class PathXConstants {
     public static final int HELP_BUTTON_X = SETTINGS_BUTTON_X + 130;
     
     //SCREEN SCROLL BUTTONS
+    public static final String SCROLL_BUTTON_NORTH_TYPE = "SCROLL_BUTTON_NORTH_TYPE";
+    public static final String SCROLL_BUTTON_EAST_TYPE = "SCROLL_BUTTON_EAST_TYPE";
+    public static final String SCROLL_BUTTON_SOUTH_TYPE = "SCROLL_BUTTON_SOUTH_TYPE";
+    public static final String SCROLL_BUTTON_WEST_TYPE = "SCROLL_BUTTON_WEST_TYPE";
+    
+    //SCROLL BUTTON LOCATIONS
+    public static final int SCROLL_BUTTON_OFFSET = 20;
+    public static final int SCROLL_BUTTON_NORTH_X = WINDOW_WIDTH / 11;
+    public static final int SCROLL_BUTTON_NORTH_Y = WINDOW_HEIGHT - (WINDOW_HEIGHT / 4);
+    public static final int SCROLL_BUTTON_EAST_X = SCROLL_BUTTON_NORTH_X + SCROLL_BUTTON_OFFSET;
+    public static final int SCROLL_BUTTON_EAST_Y = SCROLL_BUTTON_NORTH_Y + SCROLL_BUTTON_OFFSET;
+    public static final int SCROLL_BUTTON_SOUTH_X = SCROLL_BUTTON_NORTH_X;
+    public static final int SCROLL_BUTTON_SOUTH_Y = SCROLL_BUTTON_EAST_Y + SCROLL_BUTTON_OFFSET;
+    public static final int SCROLL_BUTTON_WEST_X = SCROLL_BUTTON_NORTH_X - SCROLL_BUTTON_OFFSET;
+    public static final int SCROLL_BUTTON_WEST_Y = SCROLL_BUTTON_EAST_Y;
+    
+    
     
     //Screen states
     public static final String MENU_SCREEN_STATE = "MENU_SCREEN_STATE";
