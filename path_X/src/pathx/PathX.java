@@ -65,6 +65,7 @@ public class PathX {
         /* IMAGE FILE NAMES */
         IMAGE_BACKGROUND_HOME,
         IMAGE_BACKGROUND_GAME,
+        IMAGE_BACKGROUND_LEVEL_SCREEN_BORDER,
         IMAGE_BACKGROUND_LEVEL_SELECT,
         IMAGE_BACKGROUND_LEVEL_SELECT_BORDER,
         IMAGE_BACKGROUND_SPLASH,
@@ -114,7 +115,8 @@ public class PathX {
         TEXT_PROMPT_EXIT,
         TEXT_TITLE_BAR_GAME,
         TEXT_TITLE_BAR_ERROR, 
-        TEXT_HELP
+        TEXT_HELP, 
+
 
 
         

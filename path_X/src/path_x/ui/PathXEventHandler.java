@@ -123,6 +123,12 @@ public class PathXEventHandler {
                 respondToScrollWest();
             }
         }
+        
+        if(keyCode == KeyEvent.VK_T) {
+            if(game.isCurrentScreenState(GAME_SCREEN_STATE)) {
+                respondToLevelRequest();
+            }
+        }
 
     }
 
@@ -180,6 +186,10 @@ public class PathXEventHandler {
 
     void respondToHomeRequest() {
         game.switchToSplashScreen();
+    }
+
+    private void respondToLevelRequest() {
+        game.switchToLevelScreen();
     }
 
 }

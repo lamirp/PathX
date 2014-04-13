@@ -25,6 +25,7 @@ public class PathXConstants {
     // ANIMATION SPEED
     public static final int FPS = 30;
 
+    public static final int BUTTON_OFFSET = 40;
     // UI CONTROL SIZE AND POSITION SETTINGS
     public static final int WINDOW_WIDTH = 645;
     public static final int WINDOW_HEIGHT = 505;
@@ -38,9 +39,9 @@ public class PathXConstants {
     public static final int VIEWPORT_INC = 5;
     public static final int VIEWPORT_SCROLL_INC = 5;
     public static final int LEVEL_SELECT_NORTH_PANEL_HEIGHT = 90;
-    public static final int QUIT_BUTTON_X = WINDOW_WIDTH - 45;
+    public static final int QUIT_BUTTON_X = WINDOW_WIDTH - BUTTON_OFFSET;
     public static final int QUIT_BUTTON_Y = 20;
-    public static final int HOME_BUTTON_X = QUIT_BUTTON_X - 45;
+    public static final int HOME_BUTTON_X = QUIT_BUTTON_X - BUTTON_OFFSET;
     public static final int HOME_BUTTON_Y = QUIT_BUTTON_Y;
     public static final int HELP_MARGIN_LEFT = 20;
     public static final int HELP_MARGIN_TOP = 40;
@@ -70,6 +71,9 @@ public class PathXConstants {
     //NAVI BUTTONS
     public static final String QUIT_BUTTON_TYPE = "QUIT_BUTTON_TYPE";
     public static final String HOME_BUTTON_TYPE = "HOME_BUTTON_TYPE";
+    //LEVEL NAVI BUTTONS
+    public static final String LEVEL_HOME_BUTTON_TYPE = "LEVEL_HOME_BUTTON_TYPE";
+    public static final String LEVEL_QUIT_BUTTON_TYPE = "LEVEL_QUIT_BUTTON_TYPE";
 
     //SCROLL BUTTON LOCATIONS
     public static final int SCROLL_BUTTON_OFFSET = 20;
@@ -81,10 +85,16 @@ public class PathXConstants {
     public static final int SCROLL_BUTTON_SOUTH_Y = SCROLL_BUTTON_EAST_Y + SCROLL_BUTTON_OFFSET;
     public static final int SCROLL_BUTTON_WEST_X = SCROLL_BUTTON_NORTH_X - SCROLL_BUTTON_OFFSET;
     public static final int SCROLL_BUTTON_WEST_Y = SCROLL_BUTTON_EAST_Y;
+    //HELP SCROLLER LOCATIONS
     public static final int HELP_SCROLL_BUTTON_NORTH_X = WINDOW_WIDTH - (WINDOW_WIDTH /11);
     public static final int HELP_SCROLL_BUTTON_NORTH_Y = WINDOW_HEIGHT - (WINDOW_HEIGHT / 4);
     public static final int HELP_SCROLL_BUTTON_SOUTH_X = HELP_SCROLL_BUTTON_NORTH_X;
     public static final int HELP_SCROLL_BUTTON_SOUTH_Y = SCROLL_BUTTON_EAST_Y + SCROLL_BUTTON_OFFSET;
+    //LEVEL NAVI LOCATIONS
+    public static final int LEVEL_HOME_BUTTON_X = WINDOW_WIDTH / 15;
+    public static final int LEVEL_HOME_BUTTON_Y = WINDOW_HEIGHT / 5;
+    public static final int LEVEL_QUIT_BUTTON_X = LEVEL_HOME_BUTTON_X + BUTTON_OFFSET;
+    public static final int LEVEL_QUIT_BUTTON_Y = WINDOW_HEIGHT / 5;
     
     //Screen states
     public static final String MENU_SCREEN_STATE = "MENU_SCREEN_STATE";
@@ -92,6 +102,12 @@ public class PathXConstants {
     public static final String SETTINGS_SCREEN_STATE = "SETTINGS_SCREEN_STATE";
     public static final String GAME_SCREEN_STATE = "GAME_SCREEN_STATE";
     public static final String HELP_SCREEN_STATE = "HELP_SCREEN_STATE";
+    
+    //Border states
+    public static final String DEFAULT_BORDER = "DEFAULT_BORDER";
+    public static final String NO_BORDER = "NO_BORDER";
+    public static final String LEVEL_BORDER = "LEVEL_BORDER";
+ 
 
     // DIALOG TYPES
     public static final String DIALOG_LEVEL_TYPE = "DIALOG_LEVEL_TYPE";
