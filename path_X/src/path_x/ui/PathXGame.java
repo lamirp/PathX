@@ -137,6 +137,13 @@ public class PathXGame extends MiniGame {
         sT.addState(GAME_SCREEN_STATE, img);
         s = new Sprite(sT, 0, 0, 0, 0, MENU_SCREEN_STATE);
         guiDecor.put(BACKGROUND_TYPE, s);
+        
+        //LOAD BORDER DECOR
+        img = loadImageWithColorKey(imgPath + props.getProperty(PathXPropertyType.IMAGE_BACKGROUND_LEVEL_SELECT_BORDER), COLOR_KEY);
+        sT = new SpriteType(BORDER_TYPE);
+        sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
+        s = new Sprite(sT, 0, 0, 0, 0, PathXButtonState.INVISIBLE_STATE.toString());
+        guiDecor.put(BORDER_TYPE, s);
 
         //LOAD CURSOR ****FIND SOMETHING LATER**********
         //ADD LEVEL BUTTONS
@@ -279,6 +286,31 @@ public class PathXGame extends MiniGame {
         });
 
         //LEVEL SELECTION HANDLERS
+        
+        //SCROLL HANDLERS
+        guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToScrollNorth();
+            }
+        });
+        
+                guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToScrollEast();
+            }
+        });
+                
+                        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToScrollSouth();
+            }
+        });
+                        
+                                guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToScrollWest();
+            }
+        });
         //PLAY GAME EVENT HANDLER
         guiButtons.get(PLAY_GAME_BUTTON_TYPE).setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -350,9 +382,13 @@ public class PathXGame extends MiniGame {
         //change background
         //THE BACKGROUND NEEDS TO BE A SMALLER VIEWPORT OF A LARGER IMAGE
         guiDecor.get(BACKGROUND_TYPE).setState(GAME_SCREEN_STATE);
+        guiDecor.get(BORDER_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
 
         Viewport viewport = data.getViewport();
-        viewport.setGameWorldSize(1280, 760);
+        int width = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(GAME_SCREEN_STATE).getWidth();
+        int height = guiDecor.get(BACKGROUND_TYPE).getSpriteType().getStateImage(GAME_SCREEN_STATE).getHeight();
+        viewport.setGameWorldSize(width, height);
+        viewport.setNorthPanelHeight(LEVEL_SELECT_NORTH_PANEL_HEIGHT);
         viewport.updateViewportBoundaries();
 
         //DISABLE MAIN MENU BUTTONS
@@ -371,7 +407,7 @@ public class PathXGame extends MiniGame {
         //ANYTHING ELSE NECESSARY TO DO, DO IT NOW (MAYBE SHOW THE LEVELS?)
         //Need to Activate level control buttons (scroll arrows, home button, etc)
         //which means i need to make those still
-        viewport.scroll(0, 0);
+        viewport.scroll(0, LEVEL_SELECT_NORTH_PANEL_HEIGHT);
         guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setEnabled(true);
 

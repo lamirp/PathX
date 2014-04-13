@@ -19,6 +19,9 @@ public class PathXConstants {
     
     //Background types
     public static final String BACKGROUND_TYPE = "BACKGROUND_TYPE";
+    //Border Types
+    public static final String BORDER_TYPE = "BORDER_TYPE";
+    
        
         // ANIMATION SPEED
     public static final int FPS = 30;
@@ -34,6 +37,8 @@ public class PathXConstants {
     public static final int LEVEL_BUTTON_MARGIN = 5;
     public static final int LEVEL_BUTTON_Y = 570;
     public static final int VIEWPORT_INC = 5;
+    public static final int VIEWPORT_SCROLL_INC = 50;
+    public static final int LEVEL_SELECT_NORTH_PANEL_HEIGHT = 90;
     
     //MENU UI CONTROLS POSITIONS IN THE GAME SCREEN
     public static final String PLAY_GAME_BUTTON_TYPE = "PLAY_GAME_BUTTON_TYPE";

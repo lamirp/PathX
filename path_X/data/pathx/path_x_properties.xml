@@ -6,6 +6,7 @@
     <property_list>
         <!-- ALL THE IMAGES TO BE USED IN THE GAME -->
  	<property name="IMAGE_BACKGROUND_LEVEL_SELECT"	    value="./path_X/LevelSelectScreen.png"></property>
+	<property name="IMAGE_BACKGROUND_LEVEL_SELECT_BORDER"	value="./path_X/LevelSelectBorder.png"></property>
 	<property name="IMAGE_BACKGROUND_SPLASH"	    value="./path_X/SplashScreen.png"></property>
 	<property name="IMAGE_BUTTON_PLAY"		    value="./path_X/PlayButton.png"></property>
 	<property name="IMAGE_BUTTON_RESET"		    value="./path_X/ResetButton.png"></property>
