@@ -2,6 +2,7 @@ package pathx;
 
 import java.awt.Color;
 import java.awt.Font;
+import mini_game.Viewport;
 
 /**
  * This class stores constants required for the game, file locations and other
@@ -75,6 +76,12 @@ public class PathXConstants {
     public static final String LEVEL_HOME_BUTTON_TYPE = "LEVEL_HOME_BUTTON_TYPE";
     public static final String LEVEL_QUIT_BUTTON_TYPE = "LEVEL_QUIT_BUTTON_TYPE";
 
+    //LEVEL LOCATION BUTTONS temporary stuff
+    public static final int LEVEL_ZONE_A_X = 100;
+    public static final int LEVEL_ZONE_A_Y = 200;
+    
+    public static final String LEVEL_TYPE = "LEVEL_TYPE";
+
     //SCROLL BUTTON LOCATIONS
     public static final int SCROLL_BUTTON_OFFSET = 20;
     public static final int SCROLL_BUTTON_NORTH_X = WINDOW_WIDTH / 11;
@@ -86,7 +93,7 @@ public class PathXConstants {
     public static final int SCROLL_BUTTON_WEST_X = SCROLL_BUTTON_NORTH_X - SCROLL_BUTTON_OFFSET;
     public static final int SCROLL_BUTTON_WEST_Y = SCROLL_BUTTON_EAST_Y;
     //HELP SCROLLER LOCATIONS
-    public static final int HELP_SCROLL_BUTTON_NORTH_X = WINDOW_WIDTH - (WINDOW_WIDTH /11);
+    public static final int HELP_SCROLL_BUTTON_NORTH_X = WINDOW_WIDTH - (WINDOW_WIDTH / 11);
     public static final int HELP_SCROLL_BUTTON_NORTH_Y = WINDOW_HEIGHT - (WINDOW_HEIGHT / 4);
     public static final int HELP_SCROLL_BUTTON_SOUTH_X = HELP_SCROLL_BUTTON_NORTH_X;
     public static final int HELP_SCROLL_BUTTON_SOUTH_Y = SCROLL_BUTTON_EAST_Y + SCROLL_BUTTON_OFFSET;
@@ -95,19 +102,18 @@ public class PathXConstants {
     public static final int LEVEL_HOME_BUTTON_Y = WINDOW_HEIGHT / 5;
     public static final int LEVEL_QUIT_BUTTON_X = LEVEL_HOME_BUTTON_X + BUTTON_OFFSET;
     public static final int LEVEL_QUIT_BUTTON_Y = WINDOW_HEIGHT / 5;
-    
+
     //Screen states
     public static final String MENU_SCREEN_STATE = "MENU_SCREEN_STATE";
     public static final String LEVEL_SCREEN_STATE = "LEVEL_SCREEN_STATE";
     public static final String SETTINGS_SCREEN_STATE = "SETTINGS_SCREEN_STATE";
     public static final String GAME_SCREEN_STATE = "GAME_SCREEN_STATE";
     public static final String HELP_SCREEN_STATE = "HELP_SCREEN_STATE";
-    
+
     //Border states
     public static final String DEFAULT_BORDER = "DEFAULT_BORDER";
     public static final String NO_BORDER = "NO_BORDER";
     public static final String LEVEL_BORDER = "LEVEL_BORDER";
- 
 
     // DIALOG TYPES
     public static final String DIALOG_LEVEL_TYPE = "DIALOG_LEVEL_TYPE";

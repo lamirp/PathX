@@ -106,25 +106,25 @@ public class PathXEventHandler {
             }
         }
 
-        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
+        else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
             if (game.isCurrentScreenState(GAME_SCREEN_STATE) || game.isCurrentScreenState(HELP_SCREEN_STATE)) {
                 respondToScrollSouth();
             }
         }
 
-        if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_E) {
+        else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_E) {
             if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
                 respondToScrollEast();
             }
         }
 
-        if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
+        else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
             if (game.isCurrentScreenState(GAME_SCREEN_STATE)) {
                 respondToScrollWest();
             }
         }
         
-        if(keyCode == KeyEvent.VK_T) {
+        else if(keyCode == KeyEvent.VK_T) {
             if(game.isCurrentScreenState(GAME_SCREEN_STATE)) {
                 respondToLevelRequest();
             }
@@ -165,9 +165,12 @@ public class PathXEventHandler {
         int availableScrollSpace = viewport.getGameWorldWidth() - viewport.getScreenWidth();
         //SOME STUPID MATH THAT I PROBABLY OVER COMPLICATED
         if (viewport.getViewportX() + VIEWPORT_SCROLL_INC < 0) {
-
             viewport.scroll(+VIEWPORT_SCROLL_INC, 0);
         }
+    }
+    
+    void scrollLevelsWest() {
+        
     }
 
     void respondToScrollEast() {
@@ -190,6 +193,10 @@ public class PathXEventHandler {
 
     private void respondToLevelRequest() {
         game.switchToLevelScreen();
+    }
+
+    void respondToAccessLevel(String LEVEL_TYPE) {
+        System.out.println("BODF");
     }
 
 }

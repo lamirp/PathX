@@ -45,8 +45,10 @@ public class PathXPanel extends JPanel {
             // Clear the panel
             super.paintComponent(g);
 
+                                    //RENDER LEVEL ICONS
             //Render the background for current screeen
             renderBackground(g);
+            renderLevels(g);
             //render buttons
             renderGUIControls(g);
             //RENDER DIALOGS
@@ -87,21 +89,54 @@ public class PathXPanel extends JPanel {
             Image img = bgST.getStateImage(bg.getState());
             g.drawImage(img, data.getViewport().getViewportX(), data.getViewport().getViewportY(), null);
         }
+        Sprite border = game.getGUIDecor().get(BORDER_TYPE);
+        if (border.getState().equals(DEFAULT_BORDER)) {
+            renderSprite(g, border);
+        }
+
+    }
+
+    public void renderLevels(Graphics g) {
+       // game.getGUIButtons().get(LEVEL_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        //  game.getGUIButtons().get(LEVEL_TYPE).setX(data.getViewport().getViewportX() + LEVEL_ZONE_A_X);
+        //  game.getGUIButtons().get(LEVEL_TYPE).setY(data.getViewport().getViewportY() + LEVEL_ZONE_A_Y);
+        //renderSprite(g, s);
+        Collection<Sprite> levelSprites = game.getGUILevel().values();
+        for (Sprite s : levelSprites) {
+            if(s.getState().equals(PathXButtonState.VISIBLE_STATE.toString())){
+            s.setX(data.getViewport().getViewportX() + LEVEL_ZONE_A_X);
+            s.setY(data.getViewport().getViewportY() + LEVEL_ZONE_A_Y);
+            renderSprite(g, s);
+            }
+        }
+
     }
 
     public void renderGUIControls(Graphics g) {
+        Collection<Sprite> buttonSprites = game.getGUIButtons().values();
+        //levels
+        for(Sprite s : buttonSprites)   {
+            if(s.getSpriteType().getSpriteTypeID() == LEVEL_TYPE && !s.getState().equals(PathXButtonState.INVISIBLE_STATE.toString()))
+            {
+                renderSprite(g, s);
+            }
+        }
+        
+        //decor shit
         Collection<Sprite> decorSprites = game.getGUIDecor().values();
         for (Sprite s : decorSprites) {
             if (s.getSpriteType().getSpriteTypeID() != BACKGROUND_TYPE) {
                 renderSprite(g, s);
             }
         }
-
+        
         //buttons
-        Collection<Sprite> buttonSprites = game.getGUIButtons().values();
         for (Sprite s : buttonSprites) {
+            if(s.getSpriteType().getSpriteTypeID() != LEVEL_TYPE) {
             renderSprite(g, s);
+            }
         }
+
     }
 
     public void renderQuitDialog(Graphics g) {
@@ -138,27 +173,27 @@ public class PathXPanel extends JPanel {
             g.drawImage(img, (int) s.getX(), (int) s.getY(), bgST.getWidth(), bgST.getHeight(), null);
         }
     }
-    
+
     public static void drawStringMultiLine(Graphics g, String text, int lineWidth, int x, int y) {
-    FontMetrics m = g.getFontMetrics();
-    if(m.stringWidth(text) < lineWidth) {
-        g.drawString(text, x, y);
-    } else {
-        String[] words = text.split(" ");
-        String currentLine = words[0];
-        for(int i = 1; i < words.length; i++) {
-            if(m.stringWidth(currentLine+words[i]) < lineWidth) {
-                currentLine += " "+words[i];
-            } else {
+        FontMetrics m = g.getFontMetrics();
+        if (m.stringWidth(text) < lineWidth) {
+            g.drawString(text, x, y);
+        } else {
+            String[] words = text.split(" ");
+            String currentLine = words[0];
+            for (int i = 1; i < words.length; i++) {
+                if (m.stringWidth(currentLine + words[i]) < lineWidth) {
+                    currentLine += " " + words[i];
+                } else {
+                    g.drawString(currentLine, x, y);
+                    y += m.getHeight();
+                    currentLine = words[i];
+                }
+            }
+            if (currentLine.trim().length() > 0) {
                 g.drawString(currentLine, x, y);
-                y += m.getHeight();
-                currentLine = words[i];
             }
         }
-        if(currentLine.trim().length() > 0) {
-            g.drawString(currentLine, x, y);
-        }
     }
-}
 
 }

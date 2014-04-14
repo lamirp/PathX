@@ -8,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
+import java.util.TreeMap;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import mini_game.MiniGame;
@@ -26,6 +27,8 @@ import properties_manager.PropertiesManager;
  * @author prima_000
  */
 public class PathXGame extends MiniGame {
+
+    protected TreeMap<String, Sprite> guiLevels;
 
     //handlers
     private PathXEventHandler eventHandler;
@@ -97,16 +100,29 @@ public class PathXGame extends MiniGame {
         viewport.setViewportY(0);
 
         viewport.updateViewportBoundaries();
+        //DEACTIVATE LEVELS
+        guiLevels.get(LEVEL_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(LEVEL_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(LEVEL_TYPE).setEnabled(false);
+        guiLevels.get(LEVEL_TYPE).setEnabled(false);
 
         // DEACTIVE EVERYTHING NOT ON SCREEN
         guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setEnabled(false);
         guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_SOUTH_TYPE).setEnabled(false);
         guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_EAST_TYPE).setEnabled(false);
         guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setEnabled(false);
         guiButtons.get(HELP_SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(HELP_SCROLL_BUTTON_NORTH_TYPE).setEnabled(false);
         guiButtons.get(HELP_SCROLL_BUTTON_SOUTH_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(HELP_SCROLL_BUTTON_SOUTH_TYPE).setEnabled(false);
         guiButtons.get(LEVEL_QUIT_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(LEVEL_QUIT_BUTTON_TYPE).setEnabled(false);
         guiButtons.get(LEVEL_HOME_BUTTON_TYPE).setState(PathXButtonState.INVISIBLE_STATE.toString());
+        guiButtons.get(LEVEL_HOME_BUTTON_TYPE).setEnabled(false);
         // ACTIVATE EVERYTHING ON SCREEN
         guiButtons.get(PLAY_GAME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(PLAY_GAME_BUTTON_TYPE).setEnabled(true);
@@ -138,6 +154,7 @@ public class PathXGame extends MiniGame {
 
     @Override
     public void initGUIControls() {
+        guiLevels = new TreeMap();
         BufferedImage img;
         float x, y;
         SpriteType sT;
@@ -150,8 +167,20 @@ public class PathXGame extends MiniGame {
         img = loadImage(imgPath + windowIconFile);
         window.setIconImage(img);
 
-//construct panel        
+        //construct panel        
         canvas = new PathXPanel(this, (PathXDataModel) data);
+
+        //TEMPORARY LEVEL PLACEMENT
+        String levelOne = props.getProperty(PathXPropertyType.IMAGE_LEVEL_AVAILABLE);
+        sT = new SpriteType(LEVEL_TYPE);
+        img = loadImage(imgPath + levelOne);
+        sT.addState(PathXButtonState.VISIBLE_STATE.toString(), img);
+        String levelTwo = props.getProperty(PathXPropertyType.IMAGE_LEVEL_COMPLETE);
+        img = loadImage(imgPath + levelTwo);
+        sT.addState(PathXButtonState.MOUSE_OVER_STATE.toString(), img);
+        s = new Sprite(sT, LEVEL_ZONE_A_X, LEVEL_ZONE_A_Y, 0, 0, PathXButtonState.INVISIBLE_STATE.toString());
+        guiLevels.put(LEVEL_TYPE, s);
+        guiButtons.put(LEVEL_TYPE, s);
 
         //LOAD BACKGROUNDS 'DECOR'
         currentScreenState = MENU_SCREEN_STATE;
@@ -348,6 +377,15 @@ public class PathXGame extends MiniGame {
         //STATS DIALOG
         //QUIT DIALOG
         //NEED TO DO A TREE FOR DEM NAVIGATION BUTTONS RIGHT, AND PROBABLY POWERUPS
+        
+        //DISABLE ALL INVISBLE BUTTONS BY DEFAULT UNTIL THE PROGRAMMER DECIDES THEM TO BE ENABLED
+                Iterator<Sprite> buttonsIt = guiButtons.values().iterator();
+        while (buttonsIt.hasNext()) {
+            Sprite button = buttonsIt.next();
+            if(button.getState().equals(PathXButtonState.INVISIBLE_STATE.toString())){
+            button.setEnabled(false);
+            }
+        }
     }
 
     @Override
@@ -365,6 +403,12 @@ public class PathXGame extends MiniGame {
         });
 
         //LEVEL SELECTION HANDLERS
+        guiLevels.get(LEVEL_TYPE).setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                eventHandler.respondToAccessLevel(LEVEL_TYPE);
+            }
+        });
+
         //NAVI HANDLERS
         guiButtons.get(HOME_BUTTON_TYPE).setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -386,6 +430,7 @@ public class PathXGame extends MiniGame {
 
         guiButtons.get(LEVEL_QUIT_BUTTON_TYPE).setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
+                //THIS SHOULD CHECK FOR LEVEL OVERLAY CONFIRMATION FIRST I THINK
                 eventHandler.respondToExitRequest();
             }
         });
@@ -423,6 +468,7 @@ public class PathXGame extends MiniGame {
 
         guiButtons.get(SCROLL_BUTTON_WEST_TYPE).setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
+                eventHandler.scrollLevelsWest();
                 eventHandler.respondToScrollWest();
             }
         });
@@ -494,9 +540,15 @@ public class PathXGame extends MiniGame {
     void switchToGameScreen() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
 
+        //Need to Activate level control buttons (scroll arrows, home button, etc)
+        guiLevels.get(LEVEL_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
+        guiLevels.get(LEVEL_TYPE).setEnabled(true);
+
         //change background
         //THE BACKGROUND NEEDS TO BE A SMALLER VIEWPORT OF A LARGER IMAGE
         guiDecor.get(BACKGROUND_TYPE).setState(GAME_SCREEN_STATE);
+
+        //MAKE GAME BORDER VISIBLE
         guiDecor.get(BORDER_TYPE).setState(DEFAULT_BORDER);
 
         Viewport viewport = data.getViewport();
@@ -524,7 +576,6 @@ public class PathXGame extends MiniGame {
         currentScreenState = GAME_SCREEN_STATE;
 
         //ANYTHING ELSE NECESSARY TO DO, DO IT NOW (MAYBE SHOW THE LEVELS?)
-        //Need to Activate level control buttons (scroll arrows, home button, etc)
         //which means i need to make those still
         viewport.scroll(0, LEVEL_SELECT_NORTH_PANEL_HEIGHT);
         guiButtons.get(SCROLL_BUTTON_NORTH_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
@@ -704,6 +755,10 @@ public class PathXGame extends MiniGame {
 
         guiButtons.get(HOME_BUTTON_TYPE).setState(PathXButtonState.VISIBLE_STATE.toString());
         guiButtons.get(HOME_BUTTON_TYPE).setEnabled(true);
+    }
+
+    public TreeMap<String, Sprite> getGUILevel() {
+        return guiLevels;
     }
 
 }
